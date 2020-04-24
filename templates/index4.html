@@ -1,0 +1,26 @@
+<!–– 
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>
+            My website
+        </title>
+    </head>
+    <body>
+        <h1>First Page</h1>
+
+        <p> Hi hello khana kha k jana </p>
+        <a href="{{ url_for('secnd') }}"> See more ..</a>
+    </body>
+</html>
+––> 
+{% extends "layout.html" %}
+
+{% block heading %}
+    First Page
+{% endblock %}
+
+{% block body  %}
+    <p>hello khana kha k jana</p>
+    <a href="{{ url_for('secnd') }}"> See more ..</a>
+{% endblock %}
