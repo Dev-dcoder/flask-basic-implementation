@@ -1,4 +1,5 @@
-from flask import Flask ,render_template ,request
+from flask import Flask ,render_template ,request, session
+from flask_session import Session
 import datetime
 
 
@@ -50,6 +51,25 @@ def hello():
     else:
         name = request.form.get("name")
         return render_template("hello.html",name=name)
+
+app.config["SESSION_PERMANENT"] = False
+app.config["SESSION_TYPE"] = "filesystem"
+Session(app)
+
+notes = []
+@app.route("/aa",methods=["GET","POST"])
+def aa():
+    if session.get("notes") is None:
+        session["notes"] = []
+    if request.method =="POST":
+        note = request.form.get("note")
+        notes.append(note)
+        session["notes"] = notes
+     
+        
+    return render_template("indexx.html", notes=session["notes"])
+
+
 
 
 
